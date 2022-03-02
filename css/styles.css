@@ -2,7 +2,6 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    
 }
 
 body {
@@ -213,13 +212,12 @@ section  {
     justify-content: center;
     align-items: center;
     position: absolute;
-    background-image: linear-gradient(to left, #0c164d, #161341, #1a1036, #1a0e2c, #190b22);
-    
+    background-image: url("../img/stars.svg"), linear-gradient(to left, #0c164d, #161341, #1a1036, #1a0e2c, #190b22);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 3;
+    z-index: 5;
     display: none;
 }
 .show {
@@ -231,7 +229,6 @@ section  {
     position: relative;
 }
 .numbers__gallery {
-    
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     display: grid;
