@@ -1,10 +1,10 @@
 const planetsContainerElem = document.querySelector('.planets');
-const planetGradientElem = document.querySelector('.planet__gradient');
 
-import { getApiKey } from "./modules/api.js";
+
+import { getPlanets } from "./modules/api.js";
 import { createOverlayContent } from "./modules/overlay.js";
 
-const planets = await getApiKey();
+const planets = await getPlanets();
 const overlayElem = document.querySelector('.overlay');
 
 showPlanets();
@@ -27,10 +27,14 @@ function showOverlay(planet) {
 
 function hideOverlay() {
     overlayElem.classList.remove('show');
+    
+    const innerPlanetElem = document.querySelector('.planet--inner');
+    const middlePlanetElem = document.querySelector('.planet--middle');
+    const outerPlanetElem = document.querySelector('.planet--outer');
 
-    while (planetGradientElem.firstElementChild) {
-        planetGradientElem.removeChild(planetGradientElem.firstElementChild);
-    }
+    innerPlanetElem.className = "planet planet__solis planet--inner";
+    middlePlanetElem.className = "planet planet--middle";
+    outerPlanetElem.className = "planet planet--outer";
 }
 
-export {hideOverlay}
+export {hideOverlay};

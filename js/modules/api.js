@@ -9,19 +9,19 @@ async function getApiKey () {
         const response = await fetch(KEY_URL, {
             method: 'POST' });
         const data = await response.json();
-        const bodies = getBodies(data.key);
-        return bodies;
+        return data.key;
     } catch {
         console.error('Error');
     }
 }
 
-async function getBodies(dataKey) {
+async function getPlanets() {
+    const API_KEY = await getApiKey();
     const BODIES_URL = BASE_URL + 'bodies';
     try {
         let response = await fetch(BODIES_URL, {
         method: 'GET',
-        headers: {'x-zocom': `${dataKey}`}
+        headers: {'x-zocom': `${API_KEY}`}
         });
         const data = await response.json();
         return data.bodies;
@@ -30,4 +30,4 @@ async function getBodies(dataKey) {
     }
 }
 
-export {getApiKey};
+export {getPlanets};

@@ -1,7 +1,8 @@
 /* Här lade jag all kod som hör till att skapa overlayen */
-
-const overlayElem = document.querySelector('.overlay');
 const planetGradientElem = document.querySelector('.planet__gradient');
+const innerPlanetElem = document.querySelector('.planet--inner');
+const middlePlanetElem = document.querySelector('.planet--middle');
+const outerPlanetElem = document.querySelector('.planet--outer');
 
 import {hideOverlay} from "../main.js";
 
@@ -9,13 +10,14 @@ function createOverlayContent (planet) {
     const planetInfoElem = document.querySelector('.planet__info');
     const planetNameElem = document.querySelector('.planet__name');
     const planetLatinNameElem = document.querySelector('.planet__latin');
+    
     planetInfoElem.innerText = planet.desc;
     planetNameElem.innerText = planet.name;
     planetLatinNameElem.innerText = planet.latinName;
+
     createPlanet(planet);
     createNumbersContent(planet);
     createMoonsContent(planet);
-    
 }
 
 function createNumbersContent(planet) {
@@ -43,26 +45,11 @@ function createMoonsContent(planet){
 }
 
 function createPlanet(planet){
+    outerPlanetElem.classList.add(`planet__${planet.latinName.toLowerCase()}--color`);
+    middlePlanetElem.classList.add( `planet__${planet.latinName.toLowerCase()}--color`);
+    innerPlanetElem.classList.add(`planet__${planet.latinName.toLowerCase()}--color`);
     
-    
-    const planetItem = document.createElement('div');
-    planetGradientElem.appendChild(planetItem);
-    planetItem.classList.add(`planet`, `planet--outer`, `planet__${planet.latinName.toLowerCase()}--color`);
-    
-    const planetMiddleItem = document.createElement('div');
-    planetGradientElem.appendChild(planetMiddleItem);
-    planetMiddleItem.classList.add(`planet`,`planet--middle`, `planet__${planet.latinName.toLowerCase()}--color`);
-    
-    const planetOuterItem = document.createElement('div');
-    planetGradientElem.appendChild(planetOuterItem);
-    planetOuterItem.classList.add(`planet`, `planet__solis`, `planet--inner`, `planet__${planet.latinName.toLowerCase()}--color`);
-    planetItem.addEventListener('click', () => {
-        hideOverlay();
-    });
-    planetMiddleItem.addEventListener('click', () => {
-        hideOverlay();
-    });
-    planetOuterItem.addEventListener('click', () => {
+    planetGradientElem.addEventListener('click', () => {
         hideOverlay();
     });
 }
